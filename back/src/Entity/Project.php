@@ -12,9 +12,20 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 use Symfony\Component\Serializer\Attribute\Groups;
 
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
-#[ApiResource(normalizationContext: ['groups' => ['read']],
+#[ApiResource(operations: [
+    new GetCollection(),
+    new Get(),
+    new Post(security: "is_granted('ROLE_ADMIN')"),
+    new Patch(security: "is_granted('ROLE_ADMIN')"),
+    new Delete(security: "is_granted('ROLE_ADMIN')"),
+], normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['write']],
     forceEager: false // Evite de lancer trop de requêtes SQL
 )]
