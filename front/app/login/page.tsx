@@ -1,4 +1,7 @@
 "use client";
+
+import { createCookie } from "@/utils/jwt";
+import { redirect } from "next/navigation";
  
 import { useState } from "react";
  
@@ -27,6 +30,8 @@ export default function Login() {
             // Récupération du token
             const token = data.token;
             console.log(token);
+            createCookie(token); // Crée le cookie avec le token
+            redirect("/"); // Redirige vers la page d'accueil
         } else {
             console.error(data);
             if(data.message){
