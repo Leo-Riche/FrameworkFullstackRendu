@@ -1,6 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import {
+  User,
+  Calendar,
+  Mail,
+  Smartphone,
+  MessageSquare,
+  BookOpen,
+} from "lucide-react";
 
 export default function Visitor() {
     const [response, setResponse] = useState<string>("");
@@ -69,60 +77,85 @@ export default function Visitor() {
                 )}
 
                 <form method="POST" onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4 text-indigo-600">
+                {/* Prénom & Nom */}
+                <div className="text-indigo-600 grid sm:grid-cols-2 gap-4">
+                    <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2">
+                    <User className="w-4 h-4 text-indigo-600" />
                     <input
-                    type="text"
-                    name="name"
-                    placeholder="Prénom"
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                        type="text"
+                        name="name"
+                        placeholder="Prénom"
+                        required
+                        className="w-full outline-none"
                     />
+                    </div>
+                    <div className="text-indigo-600 flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2">
+                    <User className="w-4 h-4 text-indigo-600" />
                     <input
-                    type="text"
-                    name="lastname"
-                    placeholder="Nom"
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                        type="text"
+                        name="lastname"
+                        placeholder="Nom"
+                        required
+                        className="w-full outline-none"
                     />
+                    </div>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-4 text-indigo-600">
+                {/* Axe & Date de naissance */}
+                <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="text-indigo-600 flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2">
+                    <BookOpen className="w-4 h-4 text-indigo-600" />
                     <input
-                    type="text"
-                    name="axe"
-                    placeholder="Axe souhaité"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                        type="text"
+                        name="axe"
+                        placeholder="Axe souhaité"
+                        className="w-full outline-none"
                     />
+                    </div>
+                    <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2">
+                    <Calendar className="w-4 h-4 text-indigo-600" />
                     <input
-                    type="date"
-                    name="birthdate"
-                    placeholder="Date de naissance"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                        type="date"
+                        name="birthdate"
+                        placeholder="Date de naissance"
+                        className="w-full outline-none"
                     />
+                    </div>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-4 text-indigo-600">
+                {/* Téléphone & Email */}
+                <div className="text-indigo-600 grid sm:grid-cols-2 gap-4">
+                    <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2">
+                    <Smartphone className="w-4 h-4 text-indigo-600" />
                     <input
-                    type="number"
-                    name="phoneNumber"
-                    placeholder="Numéro de téléphone"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                        type="number"
+                        name="phoneNumber"
+                        placeholder="Numéro de téléphone"
+                        className="w-full outline-none"
                     />
+                    </div>
+                    <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2">
+                    <Mail className="w-4 h-4 text-indigo-600" />
                     <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        required
+                        className="w-full outline-none"
                     />
+                    </div>
                 </div>
 
-                <textarea
+                {/* Message */}
+                <div className="text-indigo-600 flex items-start gap-2 border border-gray-300 rounded-lg px-3 py-2">
+                    <MessageSquare className="w-5 h-5 text-indigo-600 mt-1" />
+                    <textarea
                     name="message"
                     placeholder="Message personnalisé"
                     rows={4}
-                    className="w-full text-indigo-600 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 resize-none"
-                />
+                    className="w-full outline-none resize-none"
+                    />
+                </div>
 
                 <button
                     type="submit"
