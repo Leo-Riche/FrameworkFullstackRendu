@@ -2,6 +2,8 @@
  
 import { Project } from "@/types/project";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+
  
 export default function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -30,7 +32,11 @@ export default function Home() {
           {projects.map((project) => (
             <li key={project.id}>
               <h2>{project.title}</h2>
-              <p>{project.content}</p>
+              <p>{project.student}</p>
+              <p>
+                <Link href={`/project/${project.id}`}>Afficher le projet</Link>
+              </p>
+              <hr />
             </li>
           ))}
         </ul>

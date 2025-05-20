@@ -32,7 +32,7 @@ export default function AddProject() {
         const content = formData.get("content");
         const image = formData.get("image");
         const student = formData.get("student");
-        const study_years = formData.get("study_years");
+        const study_years = parseInt(formData.get("study_years") as string);
         const technology = formData.get("technology");
         
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
@@ -76,13 +76,13 @@ export default function AddProject() {
                 <textarea id="content" name="content"></textarea>
                 <br />
                 <label htmlFor="image">Image</label>
-                <input type="file" id="image" name="image" />
+                <input type="text" id="image" name="image" />
                 <br />
                 <label htmlFor="student">Étudiants</label>
                 <input type="text" id="student" name="student" />
                 <br />
                 <label htmlFor="study_years">Années d&apos;étude</label>
-                <input type="text" id="study_years" name="study_years" />
+                <input type="number" id="study_years" name="study_years" />
                 <br />
                 <label htmlFor="technology">Technologie</label>
                 <input type="text" id="technology" name="technology" />

@@ -7,11 +7,15 @@ import { useEffect, useState } from "react";
  
 export default function Menu() {
     const [isLogged, setIsLogged] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
+
  
     const fetchSession = async () => {
         const session = await getSession();
         if (session) {
             setIsLogged(true);
+            setIsAdmin(session.roles.includes("ROLE_ADMIN"));
+
         }
     };
  
@@ -32,8 +36,14 @@ export default function Menu() {
                     <Link href="/">Accueil</Link>
                 </li>
                 {isLogged ? (
-                    <li><Link href="#" onClick={handleLogout}>Déconnexion</Link></li>
-                ) : (
+                    <>
+                        {isAdmin && (
+                            <>
+                                <li><Link href="/admin/project/add">Ajouter un projet</Link></li>
+                            </>
+                        )}
+                        <li><Link href="#" onClick={handleLogout}>Déconnexion</Link></li>
+                    </>                ) : (
                     <>
                         <li><Link href="/login">Connexion</Link></li>
                         <li><Link href="/register">Inscription</Link></li>
