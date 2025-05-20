@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProjectRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Controller\ProjectAddController;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -22,13 +23,18 @@ use ApiPlatform\Metadata\Delete;
 #[ApiResource(operations: [
     new GetCollection(),
     new Get(),
-    new Post(security: "is_granted('ROLE_ADMIN')"),
+    new Post(
+        controller: ProjectAddController::class,
+        security: "is_granted('ROLE_ADMIN')",
+    ),
     new Patch(security: "is_granted('ROLE_ADMIN')"),
     new Delete(security: "is_granted('ROLE_ADMIN')"),
 ], normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['write']],
     forceEager: false // Evite de lancer trop de requêtes SQL
 )]
+
+#[UniqueEntity('title')]
 class Project
 {
     #[Groups('read')]
