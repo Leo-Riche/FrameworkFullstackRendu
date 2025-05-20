@@ -1,10 +1,18 @@
 "use client";
  
-import { getToken } from "@/utils/jwt";
+import { getSession, getToken } from "@/utils/jwt";
 import { useEffect, useState } from "react";
  
 export default function AddProject() {
     const [response, setResponse] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    const fetchSession = async () => {
+    const session = await getSession();
+        if (session) {
+            setIsAdmin(session.roles.includes("ROLE_ADMIN"));
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -79,11 +87,16 @@ export default function AddProject() {
         }
     };
 
+    useEffect(() => {
+        fetchSession();
+    }, []);
+
     return (
         <>
             <h1>Ajout d&apos;un projet</h1>
             {response && <p>{response}</p>}
-            <form method="POST" onSubmit={handleSubmit}>
+            {isAdmin ? (
+<form method="POST" onSubmit={handleSubmit}>
                 <label htmlFor="title">Titre</label>
                 <input type="text" id="title" name="title" />
                 <br />
@@ -103,7 +116,10 @@ export default function AddProject() {
                 <input type="text" id="technology" name="technology" />
                 <br />
                 <button type="submit">Ajouter</button>
-            </form>
+            </form>            ) : (
+                <p>Vous n&apos;êtes pas administrateur</p>
+            )}
+            
         </>
     );
 }
