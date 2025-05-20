@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Project } from "@/types/project";
+import { User, GraduationCap, Code2, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 export default function ArticlePage() {
     // Récupération de l'id de l'article via l'URL
@@ -27,13 +29,50 @@ export default function ArticlePage() {
     }
 
     return (
-        <div>
-            <h1>{project.title}</h1>
-            <p>{project.content}</p>
-            {/* <img src={project.image} alt={project.title} /> */}
-            <p>Etudiant : {project.student}</p>
-            <p>Année d'étude : {project.study_years}</p>
-            <p>Technologie : {project.technology}</p>
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-8 mt-10">
+            <Link
+                href="/"
+                className="inline-flex items-center text-sm text-indigo-600 hover:underline mb-6"
+            >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Retour à la liste des projets
+            </Link>
+
+            <h1 className="text-3xl font-bold text-indigo-700 mb-4">{project.title}</h1>
+
+            <p className="text-gray-700 mb-6 whitespace-pre-line">{project.content}</p>
+
+            <img
+                src={`http://localhost:8000${project.image}`}
+                alt={project.title}
+                className="w-full rounded-xl shadow-sm mb-6 object-cover max-h-[400px]"
+            />
+
+            <div className="grid sm:grid-cols-2 gap-4 text-gray-800 text-sm">
+                <p className="flex items-center gap-2">
+                <User className="w-4 h-4 text-purple-600" />
+                <span>
+                    <span className="font-semibold text-purple-600">Étudiant :</span>{" "}
+                    {project.student}
+                </span>
+                </p>
+
+                <p className="flex items-center gap-2">
+                <GraduationCap className="w-4 h-4 text-purple-600" />
+                <span>
+                    <span className="font-semibold text-purple-600">Année :</span>{" "}
+                    {project.study_years}
+                </span>
+                </p>
+
+                <p className="flex items-center gap-2 sm:col-span-2">
+                <Code2 className="w-4 h-4 text-purple-600" />
+                <span>
+                    <span className="font-semibold text-purple-600">Technologie :</span>{" "}
+                    {project.technology}
+                </span>
+                </p>
+            </div>
         </div>
     );
 }
