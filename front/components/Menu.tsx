@@ -35,6 +35,9 @@ export default function Menu() {
                 <li>
                     <Link href="/">Accueil</Link>
                 </li>
+                <li>
+                    <Link href="/visitor">Inscription à la newsletter</Link>
+                </li>
                 {isLogged ? (
                     <>
                         {isAdmin && (
