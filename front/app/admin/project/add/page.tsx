@@ -2,6 +2,14 @@
  
 import { getSession, getToken } from "@/utils/jwt";
 import { useEffect, useState } from "react";
+import {
+  FileText,
+  Image as ImageIcon,
+  User,
+  GraduationCap,
+  Code2,
+  BookOpen,
+} from "lucide-react"
  
 export default function AddProject() {
     const [response, setResponse] = useState("");
@@ -95,37 +103,138 @@ export default function AddProject() {
 
     return (
         <>
-            <h1>Ajout d&apos;un projet</h1>
-            {response && <p>{response}</p>}
-            {isAdmin ? (
-<form method="POST" onSubmit={handleSubmit}>
-                <label htmlFor="title">Titre</label>
-                <input type="text" id="title" name="title" />
-                <br />
-                <label htmlFor="content">Contenu</label>
-                <textarea id="content" name="content"></textarea>
-                <br />
-                <label htmlFor="image">Image</label>
-                <input type="file" id="image" name="image" accept="image/*" />
-                <br />
-                <label htmlFor="student">Étudiants</label>
-                <input type="text" id="student" name="student" />
-                <br />
-                <label htmlFor="study_years">Années d&apos;étude</label>
-                <input type="number" id="study_years" name="study_years" />
-                <br />
-                <label htmlFor="technology">Technologie</label>
-                <input type="text" id="technology" name="technology" />
-                <br />
-                <label htmlFor="hide">Masquer le projet</label>
-                <input type="checkbox" id="hide" name="hide" />
-                <br />
-                
-                <button type="submit">Ajouter</button>
-            </form>            ) : (
-                <p>Vous n&apos;êtes pas administrateur</p>
+            <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+            <div className="w-full max-w-2xl bg-white rounded-2xl shadow-md p-8">
+            <h1 className="text-3xl font-bold text-center text-indigo-600 mb-6">
+                Ajout d&apos;un projet
+            </h1>
+
+            {response && (
+                <p className="mb-4 text-sm text-center text-green-600 font-medium">
+                {response}
+                </p>
             )}
-            
+
+            {isAdmin ? (
+                <form
+                method="POST"
+                onSubmit={handleSubmit}
+                className="space-y-4 text-sm text-indigo-600"
+                >
+                {/* Titre */}
+                <div>
+                <label htmlFor="title" className="block font-medium mb-1 text-indigo-600">
+                <div className="flex items-center gap-2">
+                    <BookOpen className="w-4 h-4 text-indigo-500" />
+                    Titre
+                </div>
+                </label>
+                <input
+                type="text"
+                id="title"
+                name="title"
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 text-indigo-600"
+                />
+                </div>
+
+                {/* Contenu */}
+                <div>
+                <label htmlFor="content" className="block font-medium mb-1 text-indigo-600">
+                <div className="flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-indigo-500" />
+                    Contenu
+                </div>
+                </label>
+                <textarea
+                id="content"
+                name="content"
+                rows={4}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 resize-none text-indigo-600"
+                />
+                </div>
+
+                {/* Image */}
+                <div>
+                <label htmlFor="image" className="block font-medium mb-1 text-indigo-600">
+                <div className="flex items-center gap-2">
+                    <ImageIcon className="w-4 h-4 text-indigo-500" />
+                    Image
+                </div>
+                </label>
+                <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                className="w-full file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 text-indigo-600"
+                />
+                </div>
+
+                {/* Étudiants */}
+                <div>
+                <label htmlFor="student" className="block font-medium mb-1 text-indigo-600">
+                <div className="flex items-center gap-2">
+                    <User className="w-4 h-4 text-indigo-500" />
+                    Étudiants
+                </div>
+                </label>
+                <input
+                type="text"
+                id="student"
+                name="student"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 text-indigo-600"
+                />
+                </div>
+
+                {/* Années d'étude */}
+                <div>
+                <label htmlFor="study_years" className="block font-medium mb-1 text-indigo-600">
+                <div className="flex items-center gap-2">
+                    <GraduationCap className="w-4 h-4 text-indigo-500" />
+                    Années d&apos;étude
+                </div>
+                </label>
+                <input
+                type="number"
+                id="study_years"
+                name="study_years"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 text-indigo-600"
+                />
+                </div>
+
+                {/* Technologie */}
+                <div>
+                <label htmlFor="technology" className="block font-medium mb-1 text-indigo-600">
+                <div className="flex items-center gap-2">
+                    <Code2 className="w-4 h-4 text-indigo-500" />
+                    Technologie
+                </div>
+                </label>
+                <input
+                type="text"
+                id="technology"
+                name="technology"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 text-indigo-600"
+                />
+                </div>
+                            <label htmlFor="hide">Masquer le projet</label>
+                            <input type="checkbox" id="hide" name="hide" />
+                            <br />
+                <button
+                type="submit"
+                className="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition"
+                >
+                Ajouter
+                </button>
+                </form>
+            ) : (
+                <p className="text-center text-red-600 font-medium">
+                Vous n&apos;êtes pas administrateur
+                </p>
+            )}
+            </div>
+            </div>
         </>
     );
 }

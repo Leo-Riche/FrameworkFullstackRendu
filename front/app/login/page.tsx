@@ -43,14 +43,41 @@ export default function Login() {
     }
  
     return (
-        <div>
-            <h1>Connexion</h1>
-            {response && <p>{response}</p>}
-            <form method="POST" onSubmit={handleSubmit}>
-                <input type="email" name="email" placeholder="Email" />
-                <input type="password" name="password" placeholder="Mot de passe" />
-                <button type="submit">Connexion</button>
-            </form>
+        <div className="flex items-center justify-center bg-gray-50 px-4 py-12">
+            <div className="w-full max-w-md bg-white rounded-2xl shadow-md p-8">
+                <h1 className="text-3xl font-bold text-center text-indigo-600 mb-6">
+                    Connexion
+                </h1>
+
+                {response && (
+                    <p className="mb-4 text-sm text-center text-red-600 font-medium">
+                        {response}
+                    </p>
+                )}
+
+                <form method="POST" onSubmit={handleSubmit} className="space-y-4">
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        required
+                        className="w-full text-indigo-600 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Mot de passe"
+                        required
+                        className="w-full text-indigo-600 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
+                    <button
+                        type="submit"
+                        className="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition"
+                    >
+                        Connexion
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }
