@@ -6,4 +6,5 @@ export type Project = {
     student: string;
     study_years: number;
     technology: string;
+    hide : boolean;
 };

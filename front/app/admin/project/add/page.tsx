@@ -27,6 +27,7 @@ export default function AddProject() {
         const study_years = parseInt(formData.get("study_years") as string);
         const technology = formData.get("technology");
         const imageFile = formData.get("image") as File;
+        const hide = formData.get("hide") === "on" ? true : false;
 
         let imageUrl = "";
 
@@ -67,6 +68,7 @@ export default function AddProject() {
             student,
             study_years,
             technology,
+            hide,
         };
 
         const projectRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
@@ -115,6 +117,10 @@ export default function AddProject() {
                 <label htmlFor="technology">Technologie</label>
                 <input type="text" id="technology" name="technology" />
                 <br />
+                <label htmlFor="hide">Masquer le projet</label>
+                <input type="checkbox" id="hide" name="hide" />
+                <br />
+                
                 <button type="submit">Ajouter</button>
             </form>            ) : (
                 <p>Vous n&apos;êtes pas administrateur</p>

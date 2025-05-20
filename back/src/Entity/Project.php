@@ -77,6 +77,10 @@ class Project
     #[Assert\Length(min: 3, max: 255)]
     private ?string $technology = null;
 
+    #[ORM\Column()]
+    #[Groups(['read', 'write'])]
+    private ?bool $hide = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +154,18 @@ class Project
     public function setTechnology(string $technology): static
     {
         $this->technology = $technology;
+
+        return $this;
+    }
+
+    public function isHide(): ?bool
+    {
+        return $this->hide;
+    }
+
+    public function setHide(bool $hide): static
+    {
+        $this->hide = $hide;
 
         return $this;
     }
