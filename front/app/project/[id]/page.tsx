@@ -25,7 +25,7 @@ export default function ArticlePage() {
     }, [id]);
 
     if (!project) {
-        return <div>Chargement...</div>;
+        return <div className="text-indigo-600">Chargement...</div>;
     }
 
     return (
@@ -40,21 +40,20 @@ export default function ArticlePage() {
 
             <h1 className="text-3xl font-bold text-indigo-700 mb-4">{project.title}</h1>
 
-            <p className="text-gray-700 mb-6 whitespace-pre-line">{project.content}</p>
+            <p className="text-gray-700 mb-4">{project.content}</p>
 
             {project.media && project.media.length > 0 && (
-            <div className="grid grid-cols-2 gap-4 mb-6">
-                {project.media.map((media, index) => (
-                <img
-                    key={index}
-                    src={`http://localhost:8000${media.url}`}
-                    alt={media.altText || `Image ${index + 1}`}
-                    className="w-full h-64 object-cover rounded-lg shadow"
-                />
-                ))}
-            </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    {project.media.map((media, index) => (
+                        <img
+                            key={index}
+                            src={`http://localhost:8000${media.url}`}
+                            alt={media.altText || `Image ${index + 1}`}
+                            className="w-full h-48 sm:h-64 object-cover rounded-lg shadow"
+                        />
+                    ))}
+                </div>
             )}
-
 
             <div className="grid sm:grid-cols-2 gap-4 text-gray-800 text-sm">
                 <p className="flex items-center gap-2">
