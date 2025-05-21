@@ -67,7 +67,7 @@ export default function Visitor() {
         <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
             <div className="w-full max-w-xl bg-white rounded-2xl shadow-md p-8">
                 <h1 className="text-3xl font-bold text-center text-indigo-600 mb-6">
-                Inscription à la Newsletter
+                Inscription en tant que visiteur
                 </h1>
 
                 {response && (

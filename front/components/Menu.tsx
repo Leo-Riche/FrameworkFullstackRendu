@@ -63,7 +63,7 @@ export default function Menu() {
                 href="/visitor"
                 className="px-3 py-2 rounded-lg hover:bg-indigo-100 transition"
               >
-                Newsletter
+                Visiteur
               </Link>
             </li>
 
@@ -125,7 +125,7 @@ export default function Menu() {
                 href="/visitor"
                 className="block px-3 py-2 hover:bg-indigo-100 rounded"
               >
-                Newsletter
+                Visiteur
               </Link>
             </li>
 

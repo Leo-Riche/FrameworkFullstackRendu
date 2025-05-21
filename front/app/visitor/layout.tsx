@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Newsletter",
-    description: "S'inscrire à notre newsletter",
+    title: "Visiteur",
+    description: "S'inscrire à notre en tant que visiteur",
 };
 
 export default function RootLayout({
