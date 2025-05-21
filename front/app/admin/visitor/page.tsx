@@ -94,7 +94,7 @@ export default function Visitor() {
                         </p>
 
                         <p className="flex items-start gap-2 text-indigo-600">
-                        <MessageSquare className="w-8 h-6 text-indigo-600 mt-0.5" />
+                        <MessageSquare className="w-4 h-4 text-indigo-600 mt-0.5" />
                         <span>{visitor.message}</span>
                         </p>
                     </div>
