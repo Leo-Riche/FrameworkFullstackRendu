@@ -218,13 +218,21 @@ export default function AddProject() {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 text-indigo-600"
                 />
                 </div>
-                            <label htmlFor="hide">Masquer le projet</label>
-                            <input type="checkbox" id="hide" name="hide" />
-                            <br />
+                <div className="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        id="hide"
+                        name="hide"
+                        className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="hide" className="font-medium text-indigo-600 select-none">
+                        Masquer le projet
+                    </label>
+                </div>
                 <button
                 type="submit"
                 className="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition"
-                >
+                >  
                 Ajouter
                 </button>
                 </form>

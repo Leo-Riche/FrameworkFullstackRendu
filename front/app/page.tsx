@@ -112,30 +112,37 @@ export default function Home() {
                   alt={project.title}
                   className="w-full h-48 object-cover rounded-lg mb-4"
                 />
-                <Link
-                  href={`/project/${project.id}`}
-                  className="inline-block text-sm text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg transition"
-                >
-                  Voir le projet
-                </Link>
+                <div className="flex items-center gap-4">
+                  <Link
+                    href={`/project/${project.id}`}
+                    className="inline-block text-sm text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg transition"
+                  >
+                    Voir le projet
+                  </Link>
+                  {isAdmin && (
+                    <label className="flex items-center cursor-pointer select-none bg-indigo-100 rounded px-2 py-1 hover:bg-indigo-200 transition shadow-sm border border-indigo-200">
+                      <input
+                        type="checkbox"
+                        checked={project.hide}
+                        onChange={() => toggleHideProject(project.id, !project.hide)}
+                        className="form-checkbox h-5 w-5 text-indigo-600 border-indigo-400 focus:ring-indigo-500 transition duration-150 ease-in-out mr-2"
+                      />
+                      <span className={`text-xs font-medium ${project.hide ? "text-red-500" : "text-green-600"}`}>
+                        {project.hide ? "Masqué" : "Visible"}
+                      </span>
+                    </label>
+                  )}
+                </div>
               </div>
-
               {isAdmin && (
                 <>
+
                 <button
                   onClick={() => handleDelete(project.id)}
                   className="mt-4 w-full text-sm px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
                 >
                   Supprimer ce projet
                 </button>
-                 <label>
-                      <input
-                        type="checkbox"
-                        checked={project.hide}
-                        onChange={() => toggleHideProject(project.id, !project.hide)}
-                      />
-                      Masquer ce projet
-                    </label>
                 
                 </>
               )}

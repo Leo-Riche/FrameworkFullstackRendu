@@ -21,6 +21,11 @@ class UploadController extends AbstractController
         }
 
         // Dossier cible : public/uploads
+
+
+
+
+         
         $uploadDir = $this->getParameter('kernel.project_dir') . '/public/uploads';
 
         // Nom unique pour éviter les collisions
