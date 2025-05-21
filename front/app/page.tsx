@@ -107,11 +107,14 @@ export default function Home() {
                     {project.student}
                   </span>
                 </p>
-                <img
-                  src={`http://localhost:8000${project.image}`}
-                  alt={project.title}
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
+                {project.media && project.media.length > 0 && (
+                  <img
+                      src={`http://localhost:8000${project.media[0].url}`}
+                      alt={project.media[0].altText || project.title}
+                      className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                )}
+
                 <div className="flex items-center gap-4">
                   <Link
                     href={`/project/${project.id}`}

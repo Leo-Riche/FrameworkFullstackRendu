@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Controller\ProjectAddController;
+use App\Entity\Media;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -58,12 +61,6 @@ class Project
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 3, max: 255)]
-    private ?string $image = null;
-
-    #[Groups(['read', 'write'])]
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 3, max: 255)]
     private ?string $student = null;
 
     #[Groups(['read', 'write'])]
@@ -80,6 +77,14 @@ class Project
     #[ORM\Column()]
     #[Groups(['read', 'write'])]
     private ?bool $hide = null;
+
+    #[Groups(['read', 'write'])]
+    #[ORM\ManyToMany(targetEntity: Media::class, inversedBy: 'projects')]
+    private Collection $media;
+    public function __construct()
+    {
+        $this->media = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,18 +111,6 @@ class Project
     public function setContent(string $content): static
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): static
-    {
-        $this->image = $image;
 
         return $this;
     }
@@ -167,6 +160,25 @@ class Project
     {
         $this->hide = $hide;
 
+        return $this;
+    }
+
+     /**
+     * @return Collection<int, Media>
+     */
+    public function getMedia(): Collection { return $this->media; }
+
+    public function addMedia(Media $media): static
+    {
+        if (!$this->media->contains($media)) {
+            $this->media->add($media);
+        }
+        return $this;
+    }
+
+    public function removeMedia(Media $media): static
+    {
+        $this->media->removeElement($media);
         return $this;
     }
 }

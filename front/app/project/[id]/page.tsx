@@ -42,11 +42,19 @@ export default function ArticlePage() {
 
             <p className="text-gray-700 mb-6 whitespace-pre-line">{project.content}</p>
 
-            <img
-                src={`http://localhost:8000${project.image}`}
-                alt={project.title}
-                className="w-full rounded-xl shadow-sm mb-6 object-cover max-h-[400px]"
-            />
+            {project.media && project.media.length > 0 && (
+            <div className="grid grid-cols-2 gap-4 mb-6">
+                {project.media.map((media, index) => (
+                <img
+                    key={index}
+                    src={`http://localhost:8000${media.url}`}
+                    alt={media.altText || `Image ${index + 1}`}
+                    className="w-full h-64 object-cover rounded-lg shadow"
+                />
+                ))}
+            </div>
+            )}
+
 
             <div className="grid sm:grid-cols-2 gap-4 text-gray-800 text-sm">
                 <p className="flex items-center gap-2">
