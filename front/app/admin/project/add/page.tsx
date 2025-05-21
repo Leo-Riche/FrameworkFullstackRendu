@@ -15,6 +15,7 @@ export default function AddProject() {
     const [response, setResponse] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
     const [images, setImages] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchSession = async () => {
         const session = await getSession();
@@ -47,8 +48,6 @@ export default function AddProject() {
             media: selectedMedia,
             hide,
         };
-
-        console.log("Payload envoyé :", payload);
 
         const projectRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
             method: "POST",
@@ -92,6 +91,9 @@ export default function AddProject() {
             })
             .catch((err) => {
                 console.error("Erreur lors du chargement des médias :", err);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, []);
 
@@ -99,7 +101,9 @@ export default function AddProject() {
 
     return (
         <>
-            {isAdmin ? (
+            {isLoading ? (
+            <p className="text-center text-indigo-600 py-10">Chargement ...</p>
+        ) : isAdmin ? (
                 <>
                     <form
                         method="POST"
