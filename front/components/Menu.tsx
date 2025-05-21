@@ -149,6 +149,14 @@ export default function Menu() {
                     </Link>
                   </li>
                 )}
+                  <li>
+                    <Link
+                      href="/admin/visitor"
+                      className="block px-3 py-2 hover:bg-purple-100 rounded text-purple-700"
+                    >
+                      Voir les visiteurs
+                    </Link>
+                  </li>
                 <li>
                   <button
                     onClick={handleLogout}
